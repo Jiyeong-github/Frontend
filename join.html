@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" type="text/css" href="common.css">
+</head>
+<body>
+    <div>
+        뒤로가기<input type="button" value="back" onclick="history.back()">
+    </div>
+    <div id="joinBox">
+        <label>아이디:<input type="text" id="Id"></label>
+        <label>비밀번호:<input type="text" id="Pw"></label>
+        <label>비밀번호 확인:<input type="text" id="Pw2"></label>
+    </div>
+    <div>
+        <input type="button" value="join" onclick="joinControl()">
+    </div>
+    <script src="common.js"></script>
+</body>
+</html>
