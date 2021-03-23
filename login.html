@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인</title>
-    <link rel="stylesheet" type="text/css" href="common.css">
+    <link rel="stylesheet" href="common.css">
+    <script defer src="common.js"></script>
+    <title>Document</title>
 </head>
 <body>
-    <div id="login">
-        <label>아이디:<input type="text" id="id"></label>
-        <label>비밀번호:<input type="password" id="pw"></label>
-    </div>
+
+    <div><label>아이디 : <input type="text" id="txtId"></label></div>
+    <div><label>비밀번호 : <input type="password" id="txtPw"></label></div>
     <div>
-        <a href="join.html"><input type="button" value="join">
-    </a></div>
-    <div>
-       <input type="button" value="login" onclick="loginControl()">
+        <a href="join.html"><input type="button" value="회원가입"></a>
+        <input type="button" value="로그인" onclick="chkLogin();">
     </div>
-    <script src="common.js"></script>
 </body>
 </html>

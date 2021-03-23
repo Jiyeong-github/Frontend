@@ -1,33 +1,29 @@
-   var loginID=document.getElementById("id");
-   var loginPW=document.getElementById("pw");
-
-
-
-   function goToBack(){
+function goToBack() {
     history.back();
 }
 
+function chkJoin() {
+    var txtIdElem = document.getElementById('txtId');
+    var txtPwElem = document.getElementById('txtPw');
+    var txtRePwElem = document.getElementById('txtRePw');
 
-function loginControl(){
- 
-    if(loginID.value==''||loginPW.value==''){
-        alert("로그인을 할 수 없습니다.");
-    }else if(loginID.value!=''&&loginPW.value!=''){
-        location.href="main.html";
+    if(txtIdElem.value === '' || txtPwElem.value === '') {
+        alert('로그인을 할 수 없습니다.');
+    } else if(txtPwElem.value !== txtRePwElem.value) {
+        alert('비밀번호를 확인해 주세요.');
+    } else {
+        location.href = 'login.html';
     }
 }
 
-    
+function chkLogin() {
+    //console.log('id값: ' + txtId.value);
 
-function joinControl(){
-    var joinId=document.getElementById("Id").value;
-    var joinPw=document.getElementById("Pw").value;
-    var joinPw2=document.getElementById("Pw2").value;
-
-    if(joinPw!=joinPw2){
-        alert("비밀번호를 확인해주세요");
-    }else if(joinId==''||joinPw==''||joinPw2==''){
-        alert("회원가입을 할 수 없습니다.");
-    }else{location.href="login.html";}
+    var txtIdElem = document.getElementById('txtId');
+    var txtPwElem = document.getElementById('txtPw');
+    if(txtIdElem.value === '' || txtPwElem.value === '') {
+        alert('로그인을 할 수 없습니다.')
+    } else {
+        location.href = 'main.html'; 
+    }
 }
-
