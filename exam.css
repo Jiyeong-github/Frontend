@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro:200,400');
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Playfair Display', serif;color: white;
+}
+p,a {font-family: 'Source Sans Pro', sans-serif;}
+
+ html{scroll-behavior: smooth;}
+ html,body{padding: 0; margin: 0; width: 100%;}
+ body{
+     display: flex;
+     flex-direction: row;
+ }
+
+.hero {
+    padding: 10px 10px 30px 20px;
+    height: fit-content;
+}
+
+.hero a {
+    position: relative;
+    top: 10px;
+}
+
+.wrapper {
+  width: 100%;
+}
+
+footer{
+    width: 100%;
+    background-color: blanchedalmond; color:navy; padding:.75rem;
+    position: fixed; bottom: 0; left: auto;}
+
+a{background-color: goldenrod;text-decoration: none;
+    border-radius:.25rem; padding: .5rem; transition: all .3s;}
+
+ul{padding:0;margin: 0;}
+
+a:hover{
+    opacity: 0.6;
+}
+.breweries{
+    padding: 40px;
+}
+
+.breweries>ul{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    gap: 1rem;
+    list-style: none;
+}
+
+.breweries>ul>li{
+position: relative;
+border: 1px solid aliceblue;
+border-radius: .5rem;
+height: 420px;
+}
+
+.breweries>ul>li>figure{
+    overflow: hidden;
+    position: relative;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    max-height: 220px;
+}
+
+.breweries>ul>li>figure>img{
+    height: 100%;
+}
+.breweries>ul>li>figure>figcaption{
+    position: absolute;
+    bottom: 0px;
+    background-color: rgba(0,0,0,.7);
+    width: 100%;
+}
+.breweries>ul>li>figure>figcaption>h3{
+    color: antiquewhite;
+    padding: .50rem;
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+.breweries>ul>li>p{
+    line-height: 1.5;
+    padding: 1rem .75rem;
+    color: #666;
+}
+
+.breweries>ul>li>a{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+jun17183@naver.com
