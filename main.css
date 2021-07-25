@@ -1,0 +1,231 @@
+@charset 'utf-8';
+
+html{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+}
+
+body{
+    overflow-x: hidden; /*이렇게 하면 스크롤이 안 생김*/
+    color: rgb(29,29,31);
+    letter-spacing: -0.05em; /*자간 줄여줌*/
+    background:white;
+}
+
+p{
+    line-height: 1.6; /*행간*/
+}
+
+a{
+    color: rgb(29,29,31);
+    text-decoration: none;
+}
+
+.global-nav{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 44px;
+    padding:0 1rem;
+}
+.local-nav{
+    position: absolute;
+    top: 45px;
+    left: 0;
+    z-index: 11;
+    width: 100%;
+    height: 52px;
+    border-bottom: 1px solid #ddd;
+    padding:0 1rem;
+}
+
+.global-nav-links,
+.local-nav-links{
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.global-nav-links{
+    justify-content: space-between;
+}
+
+.local-nav-links .product-name{/*a 태그보다 구체적인 클래스가 우선권이 있음*/
+    margin-right: auto;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.local-nav-links a{
+    font-size: 0.8rem;
+}
+
+.local-nav-links a:not(.product-name){/*not은 ()안의 조건에 만족하는 것은 제외*/
+    margin-left: 2em;
+}
+
+.scroll-section{
+    position: relative;
+    padding-top: 50vh; /*viewport 높이*/
+}
+
+#scroll-section-0 h1{
+    font-size: 4rem;
+    text-align: center;
+    z-index: 5;
+    position: relative;
+    top: -10vh;
+}
+
+.main-message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 35vh;
+    margin: 5px 0;
+    height: 3em; /*현재 내 폰트 사이즈의 비율을 반영 2.5rem의 3배~*/
+    font-size: 2.5rem;
+    opacity: 0;
+}
+
+.main-message p{
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.main-message small{
+    display: block;/*박스가 되어서 알아서 개행됨*/
+    margin-bottom: 0.5em;
+    font-size: 1rem;
+}
+
+#scroll-section-2 .main-message{
+    font-size: 3.5rem;
+}
+
+.description{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem; /*위 아래 0 좌우 1*/
+    font-size: 1.2rem;
+    color: #888;
+}
+
+.description strong{
+    float: left;
+    margin-right: 0.2em; /*42px*0.2 = 8.4*/
+    font-size: 3rem; /*14*3 = 42px*/
+    color: rgb(29,29,31);
+}
+
+.sticky-elem .desc-message{
+    width: 45%;
+    font-weight: bold;
+    opacity: 0;
+}
+
+.pin{
+    width: 1px;
+    height: 100px;
+    background: rgb(29,29,31);
+}
+#scroll-section-2 .b{
+    top: 10%;
+    left: 40%;
+    /*모바일 배려*/
+}
+#scroll-section-2 .c{
+    top: 15%;
+    left: 45%;
+    /*모바일 배려*/
+}
+.mid-message{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding:0 1rem;
+    font-size: 2rem;
+    color: #888;
+}
+
+.mid-message strong{
+    color: rgb(29,29,31);
+}
+
+.canvas-caption{
+    max-width: 1000px;
+    margin: -24rem auto 0;
+    padding:0 1rem;
+    color: #888;
+    font-size: 1.2rem;
+}
+
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7rem;
+    color: #888;
+    background: darkorange;
+}
+
+.sticky-elem{
+    display: none;
+    position: fixed;
+    left: 0;
+    width: 100%;
+}
+
+#show-scene-0 #scroll-section-0 .sticky-elem,
+#show-scene-1 #scroll-section-1 .sticky-elem,
+#show-scene-2 #scroll-section-2 .sticky-elem,
+#show-scene-3 #scroll-section-3 .sticky-elem{
+    display: block;
+}
+
+/*데스크탑 사이즈*/
+@media (min-width: 1024px){
+    #scroll-section-0 h1{
+        font-size: 9vw;
+    }
+    .main-message{
+        font-size: 4vw;
+    }
+    .description{
+        padding: 0;
+        font-size: 2rem;
+    }
+    .description strong{
+        font-size: 6rem;
+    }
+    #scroll-section-2 .main-message{
+        font-size: 6vw;
+    }
+    .main-message small{ 
+        font-size: 1.5vw;
+    }
+    .sticky-elem .desc-message{
+        width: 20%;
+    }   
+    #scroll-section-2 .b{
+        top: 20%;
+        left: 53%;
+    }
+    #scroll-section-2 .c{
+        left: 55%;
+    }
+    .mid-message{
+        width: 1000px;
+        padding: 0;
+        font-size: 4vw;
+    }
+    .canvas-caption{
+        margin-top: -8rem;
+        padding: 0;
+        font-size: 2rem;
+    }
+}
