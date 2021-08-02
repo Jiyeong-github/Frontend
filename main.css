@@ -202,6 +202,14 @@ a{
     top: 0;
 }
 
+.image-blend-canvas{
+    border: 3px solid red;
+}
+#scroll-section-3{
+    display: flex;
+    flex-direction: column; /*flex는 기본적으로 가로 배치*/
+    align-items: center;
+}
 .sticky-elem
 /*데스크탑 사이즈*/
 @media (min-width: 1024px){
