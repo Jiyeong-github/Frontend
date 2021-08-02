@@ -115,7 +115,11 @@ a{
     font-size: 1.2rem;
     color: #888;
 }
-
+.desc-message{
+    width: 50%;
+    font-weight: bold;
+    opacity: 0;
+}
 .description strong{
     float: left;
     margin-right: 0.2em; /*42px*0.2 = 8.4*/
@@ -187,6 +191,18 @@ a{
     display: block;
 }
 
+.sticky-elem-canvas{
+    top: 0;
+    height: 100%;
+    background-color: #ccc;
+}
+
+.sticky-elem-canvas canvas{
+    position: absolute;
+    top: 0;
+}
+
+.sticky-elem
 /*데스크탑 사이즈*/
 @media (min-width: 1024px){
     #scroll-section-0 h1{

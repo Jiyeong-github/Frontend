@@ -23,8 +23,14 @@
                 messageB: document.querySelector('#scroll-section-0 .main-message.b'),
                 messageC: document.querySelector('#scroll-section-0 .main-message.c'),
                 messageD: document.querySelector('#scroll-section-0 .main-message.d'),
+                canvas: document.querySelector('video-canvas-0'),
+                context: document.querySelector('#video-canvas-0').getContext('2d'),
+                videoImages: []
             },
             values: { //투명도 주기 - 배열로 시작과 끝 값을 넣어 줌
+                videoImagesCount: 300,
+                imageSequence: [0, 299],
+                canvas_opacity: [1,0, {start: 0.9, end: 1}],
                 messageA_opacity_in: [0,1,  {start: 0.1, end : 0.2}], 
                 messageB_opacity_in: [0,  1,{start: 0.3, end : 0.4}], 
                 messageC_opacity_in: [0,  1,{start: 0.5, end : 0.6}], 
@@ -63,6 +69,31 @@
                 messageC: document.querySelector('#scroll-section-2 .c'),
                 pinB: document.querySelector('#scroll-section-2 .b .pin'),
                 pinC: document.querySelector('#scroll-section-2 .c .pin'),
+                canvas: document.querySelector('video-canvas-1'),
+                context: document.querySelector('#video-canvas-1').getContext('2d'),
+                videoImages: []
+            },
+            values: { //투명도 주기 - 배열로 시작과 끝 값을 넣어 줌
+                videoImagesCount: 960,
+                imageSequence: [0, 959],
+                canvas_opacity_in: [1, 0, {start: 0, end: 0.1}],
+                canvas_opacity_out: [1, 0, {start: 0.95, end: 1}],
+                messageA_opacity_in: [0,1,  {start: 0.1, end : 0.2}], 
+                messageB_opacity_in: [0,  1,{start: 0.3, end : 0.4}], 
+                messageC_opacity_in: [0,  1,{start: 0.5, end : 0.6}], 
+                messageD_opacity_in: [0,  1,{start: 0.7, end : 0.8}], 
+                messageA_translateY_in: [20, 0, {start: 0.1, end: 0.2}],
+                messageB_translateY_in: [20, 0, {start: 0.3, end: 0.4}],
+                messageC_translateY_in: [20, 0, {start: 0.5, end: 0.6}],
+                messageD_translateY_in: [20, 0, {start: 0.7, end: 0.8}],
+                messageA_opacity_out: [1, 0,  {start: 0.25, end : 0.3}], 
+                messageB_opacity_out: [0, -20, {start: 0.45, end : 0.5}],
+                messageC_opacity_out: [0, -20, {start: 0.65, end : 0.7}],  
+                messageD_opacity_out: [0, -20, {start: 0.85, end : 0.9}], 
+                messageA_translateY_out: [0, -20, {start: 0.25, end: 0.3}],
+                messageB_translateY_out: [0, -20, {start: 0.45, end: 0.5}],
+                messageC_translateY_out: [0, -20, {start: 0.65, end: 0.7}],
+                messageD_translateY_out: [0, -20, {start: 0.85, end: 0.9}],
             }
         },
         {//3
@@ -97,6 +128,10 @@
             }
         }
         document.body.setAttribute('id',`show-scene-${currentScene}`);
+        
+        const heighRatio = window.innerHeight / 1080;
+        sceneInfo[0].objs.canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${heighRatio})`;
+        sceneInfo[2].objs.canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${heighRatio})`;
     }
 
     function calcValues(values){
@@ -137,6 +172,11 @@
         // yOffset(전체 문서에서의 현재 스크롤 값) / 현재 씬의 scrollHeight;
         switch (currentScene) {
             case 0:
+                let sequence =  Math.round(calcValues(values.imageSequence, currentYOffset));
+                objs.context.drawImage(objs.videoImages[sequence], 0 , 0);
+                objs.canvas.style.style.opacity = calcValues(values.canvas_opacity, currentYOffset);
+
+
                 if(scrollRatio <= 0.22){
                     //in
                     objs.messageA.style.opacity = calcValues(values.messageA_opacity_in, currentYOffset);
@@ -180,6 +220,9 @@
             case 1:
                 break;
             case 2:
+                let sequence2 =  Math.round(calcValues(values.imageSequence, currentYOffset));
+                objs.context.drawImage(objs.videoImages[sequence2], 0 , 0);
+
                 if (scrollRatio <= 0.5) {
 					// in
 					objs.canvas.style.opacity = calcValues(values.canvas_opacity_in, currentYOffset);
@@ -225,6 +268,31 @@
             case 3:
                 break;
         }
+    };
+
+    function setCanvasImages(){
+        let imgElem;
+        for (let i = 0; i < sceneInfo[0].values.videoImagesCount; i++) {
+            imgElem = new Image();
+            imgElem.src = `./video/001/IMG_${6726 + i}.JPG`;
+            sceneInfo[0].objs.videoImages.push(imgElem);
+        }
+        let imgElem2;
+        for (let i = 0; i < sceneInfo[2].values.videoImagesCount; i++) {
+            imgElem2= new Image();
+            imgElem2.src = `./video/002/IMG_${7027 + i}.JPG`;
+            sceneInfo[2].objs.videoImages.push(imgElem2);
+        }
+    }
+    setCanvasImages();
+
+    function setLayout(){
+        //각 스크롤 섹션의 높이 세팅
+        for(let i=0; i<sceneInfo.length; i++){
+            if(sceneInfo[i].type === 'sticky'){
+                sceneInfo[i].scrollHeight = sceneInfo[i].heightNum = window.innerHeight;
+            }
+        }
     }
 
     function scrollLoop() {
@@ -259,7 +327,10 @@
     });
 
     //돔 구조만 로딩하면 실행됨 window.addEventListener('DOMContentLoaded', setLayout); 
-    window.addEventListener('load',setLayout); //웹 페이지의 리소스들을 싹 다 로드하고 실행
+    window.addEventListener('load',() => {
+        setLayout();
+        sceneInfo[0].objs.context.drawImage(sceneInfo[0].objs.videoImages[0], 0,0);
+    }); //웹 페이지의 리소스들을 싹 다 로드하고 실행
     window.addEventListener('resize', setLayout);
     //setLayout(); scrollHeight를 잡아주고, scrollSectionElement 높이를 잡아 줌
 
